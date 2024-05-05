@@ -1,6 +1,6 @@
 package boardgame;
 
-public abstract class Piece { 
+public class Piece { 
     
     protected Position position; //Only visible in board layer 
     private Board board;
