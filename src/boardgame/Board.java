@@ -45,7 +45,7 @@ public class Board {
         piece.position = position;
     }
 
-    public Piece removePiece(Position position) {
+    public Piece removePiece(Position position) { //Checks if position exists and removes a piece
         if (!positionExists(position)) {
             throw new BoardException("Position not on the board");
         }
@@ -58,15 +58,15 @@ public class Board {
         return aux;
     }
 
-    public boolean positionExists(int row, int column) {
+    public boolean positionExists(int row, int column) { //Checking if a position exists by receiving the row and column numbers as a parameter
         return row >= 0 && row < rows && column >= 0 && column < columns; 
     }
 
-    public boolean positionExists(Position position) {
+    public boolean positionExists(Position position) {  //Overloading: checking if a position exists by receiving a type Position as a parameter
         return positionExists(position.getRow(), position.getColumn());
     }
 
-    public boolean thereIsAPiece(Position position) {
+    public boolean thereIsAPiece(Position position) { //Checking if there is a piece on a position
         if (!positionExists(position)) {
             throw new BoardException("Position not on the board");
         }

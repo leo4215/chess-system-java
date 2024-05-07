@@ -27,7 +27,7 @@ public class ChessMatch { //Class responsible for all the game rules
         return mat;
     }
 
-    public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+    public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) { //Removes the piece from the source position and places it on the target position
         Position source = sourcePosition.toPosition();
         Position target = targetPosition.toPosition();
         validateSourcePosition(source);
@@ -35,20 +35,20 @@ public class ChessMatch { //Class responsible for all the game rules
         return (ChessPiece) capturedPiece;
     }
 
-    private Piece makeMove(Position source, Position target) {
+    private Piece makeMove(Position source, Position target) {  
         Piece p = board.removePiece(source);
-        Piece capturedPiece = board.removePiece(target);
+        Piece capturedPiece = board.removePiece(target); //Captures a piece on target position if there is any 
         board.placePiece(p, target);
         return capturedPiece;
     }
 
-    private void validateSourcePosition(Position position) {
+    private void validateSourcePosition(Position position) { //Checks if there is a piece on source position
         if (!board.thereIsAPiece(position)) {
             throw new ChessException("There is no piece on source position");
         }
     }
 
-    private void placeNewPiece(char column, int row, ChessPiece piece) {
+    private void placeNewPiece(char column, int row, ChessPiece piece) { //Places a new piece on the board
         board.placePiece(piece, new ChessPosition(column, row).toPosition());
 
     }
