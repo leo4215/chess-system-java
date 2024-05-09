@@ -27,6 +27,12 @@ public class ChessMatch { //Class responsible for all the game rules
         return mat;
     }
 
+    public boolean[][] possibleMoves(ChessPosition sourcePosition) { //Returns a boolean matrix containing the possible movements
+        Position position = sourcePosition.toPosition();
+        validateSourcePosition(position);
+        return board.piece(position).possibleMoves();
+    }
+
     public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) { //Removes the piece from the source position and places it on the target position
         Position source = sourcePosition.toPosition();
         Position target = targetPosition.toPosition();
