@@ -81,12 +81,13 @@ public class ChessMatch { //Class responsible for all the game rules
         } else {
             nextTurn();
         }
-        
+
         return (ChessPiece) capturedPiece;
     }
 
     private Piece makeMove(Position source, Position target) {  
-        Piece p = board.removePiece(source);
+        ChessPiece p = (ChessPiece)board.removePiece(source);
+        p.increaseMoveCount();
         Piece capturedPiece = board.removePiece(target); //Captures a piece on target position if there is any 
         board.placePiece(p, target);
 
@@ -98,7 +99,8 @@ public class ChessMatch { //Class responsible for all the game rules
     }
 
     private void undoMove(Position source, Position target, Piece capturedPiece) { //If they put themselves in check, the move has to be undone
-        Piece p = board.removePiece(target);
+        ChessPiece p = (ChessPiece)board.removePiece(target);
+        p.decreaseMoveCount();
         board.placePiece(p, source);
 
         if (capturedPiece != null) {
